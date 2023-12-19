@@ -1,0 +1,4 @@
+.vscode
+.autoenv.zsh
+.venv
+*.zip
