@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pupil Detector | Proyecto TIMAG 2023</title>
+    <link rel="shortcut icon" href="../images/eye-logo.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body>
+    <header class="header-container">
+      <div class="header">
+        <p>Proyecto Final | TIMAG 2023</p>
+
+        <div class="header-title">
+          <div class="header-title__logo">
+            <img src="../images/eye-logo.png" alt="Logo" />
+          </div>
+          <div class="header-title__text">
+            <h1>Pupil Detector</h1>
+          </div>
+        </div>
+
+        <nav>
+          <a href="../index.html">Introducción</a>
+          <a href="#" class="active">Método</a>
+          <a href="./datasets.html">Dataset</a>
+          <a href="./results.html">Resultados</a>
+          <a href="./conclusions.html">Conclusiones</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <h2 class="title">2. Método</h2>
+
+      <p class="text">
+        Para abordar el desafío de detectar la pupila en imágenes de ojos, nos embarcamos en un exhaustivo proceso de
+        investigación y revisión de informes científicos. Durante esta etapa, exploramos diversos papers y enfoques
+        propuestos por expertos en el campo de la detección de pupila. Entre los estudios revisados, nos encontramos con
+        el trabajo titulado "ExCuSe: Robust Pupil Detection in Real-World Scenarios", que demostró ser altamente
+        relevante y prometedor para nuestro objetivo.
+      </p>
+
+      <p class="text">
+        El paper de ExCuSe presenta un método robusto y eficiente para detectar la pupila en escenarios del mundo real.
+        Su enfoque basado en características y morfología matemática se destacó por su capacidad para abordar los
+        desafíos de variaciones de iluminación, ruido y complejidades anatómicas presentes en las imágenes de ojos. La
+        combinación de múltiples técnicas y la exhaustiva validación experimental ofrecieron resultados prometedores que
+        inspiraron nuestro propio enfoque.
+      </p>
+
+      <p class="text">
+        Asimismo, también revisamos la investigación titulada "In the Eye of the Beholder", que proporcionó una visión
+        panorámica de los distintos métodos disponibles para resolver el problema de detección de pupila. Esta revisión
+        nos permitió comprender las fortalezas y limitaciones de las diversas aproximaciones.
+      </p>
+
+      <p class="text">
+        En vista de la solidez del enfoque propuesto por ExCuSe y la comprensión más amplia obtenida a través de la
+        revisión de "In the Eye of the Beholder", tomamos la decisión de basarnos en el método propuesto por ExCuSe como
+        nuestro punto de partida para desarrollar nuestra propia solución de detección de pupila. Aprovechamos los
+        conceptos y técnicas clave presentados en el paper como base para adaptar y personalizar nuestro enfoque para
+        satisfacer las necesidades específicas de nuestro proyecto.
+      </p>
+
+      <h3 class="subtitle">2.1. Solución Propuesta</h3>
+
+      <p class="text">
+        Como ya fue mencionado anteriormente, nuestra solución esta fuertemente basada en el algoritmo de ExCuSe: Robust
+        Pupil Detection in Real-World Scenarios. Sin embargo, nuestro enfoque presenta algunas diferencias. A
+        continuación, se presenta el diagrama de flujo de nuestro método.
+      </p>
+
+      <div class="img">
+        <img src="../images/decision-flow.jpg" alt="Decision Flow" />
+        <span>Diagrama de flujo</span>
+      </div>
+
+      <p class="text">
+        Como se puede observar, nuestro algoritmo recibe como entrada una imagen de 8 bits (sus pixeles tienen valores
+        entre 0 y 255) en escala de grises. El primer paso es de procesamiento y consiste en normalizar la imagen y
+        analisar el histograma.
+      </p>
+
+      <h3 class="subsubtitle">2.1.1. Normalización y analisis de histograma</h3>
+
+      <p class="text">
+        Con la imagen normalizada se calcula el histograma utilizando la funcion
+        <code class="code">cv2.calcHist</code> y luego se analizan sus bins para determinar la presencia de un pico. Si
+        se detecta un pico, se procede a la etapa de detección de bordes. En caso contrario, se procede a la etapa de
+        detección de pupila mediante uso de la heurística.
+      </p>
+
+      <div class="code-block">
+        <pre>
+def peak_detected(image, th=200, mu=10):
+    hist = cv2.calcHist([image], [0], None, [256], [0, 256])
+    avg_intensity = np.mean(image)
+    for i in range(256):
+        if hist[i] > th and hist[i] > mu * avg_intensity:
+            return True
+    return False</pre
+        >
+      </div>
+
+      <div class="img2">
+        <img src="../images/paso-1.png" alt="Paso 1" />
+      </div>
+
+      <h3 class="subsubtitle">2.1.2. Detección del centro de la pupila basado en detección de bordes</h3>
+
+      <p class="text">
+        Dado que se detecto un pico en el histograma, lo primero que se realiza es aplicarle un filtro gaussiano a la
+        imagen con la función <code class="code">cv2.GaussianBlur</code>. Luego, utilizamos la función
+        <code class="code">cv2.Canny</code> para detectar los bordes de la imagen y hallamos los contornos de los bordes
+        con la función <code class="code">cv2.findContours</code>.
+      </p>
+
+      <div class="code-block">
+        <pre>
+smoothed = cv2.GaussianBlur(image, (5, 5), 0)
+edges = cv2.Canny(smoothed, 50, 100)
+contours, _ = cv2.findContours(edges, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)</pre
+        >
+      </div>
+
+      <div class="img3">
+        <img src="../images/paso-2.png" alt="Paso 2" />
+      </div>
+
+      <p class="text">
+        Una vez tenemos los contornos, el siguiente paso es encontrar los elipses que mejor se adapten a los contornos y
+        los filtramos tomando como región de interés (ROI) un cuadrado desde el centro de la elipse y verificando que el
+        porcentaje de pixeles oscuros dentro de la región de interés sea mayor al 90% (consideramos que la pupila es
+        siempre oscura).
+      </p>
+
+      <div class="code-block">
+        <pre>
+ellipses = []
+for contour in contours:
+    if len(contour) >= 30:
+        ellipse = cv2.fitEllipse(contour)
+
+        # Unpack the ellipse parameters
+        (center_x, center_y), (major_axis, minor_axis), angle = ellipse
+        
+        # Convert the parameters to integer values
+        center = (int(center_x), int(center_y))
+        axes = (int(major_axis / 2), int(minor_axis / 2))
+
+        # Calculate the size of the square based on a scale factor
+        scale_factor = 0.4
+        square_size = int(min(axes) * scale_factor)
+        
+        # Define the coordinates of the square
+        x = center[0] - square_size // 2
+        y = center[1] - square_size // 2
+        
+        # Extract the square region of interest (ROI) from the image
+        roi = image[y:y+square_size, x:x+square_size]
+        
+        # Calculate the percentage of black pixels within the ROI
+        black_pixels = np.sum(roi < 45)
+        total_pixels = roi.size
+        if total_pixels == 0:
+            black_pixels_percentage = 0
+        else:
+            black_pixels_percentage = black_pixels / total_pixels
+
+        # If the percentage of black pixels is greater than 90%, then the ellipse is a pupil
+        if black_pixels_percentage > 0.9:
+            ellipses.append(ellipse)</pre
+        >
+      </div>
+
+      <p class="text">
+        Como resultado se pueden dar 3 opciones, la primera es que no se detecte ninguna elipse que cumpla con las
+        condiciones, en ese caso se procede a la detección del centro de la pupila basada en la heurística.
+      </p>
+
+      <p class="text">
+        La segunda opción es que se detecte una sola elipse que cumpla con las condiciones, en ese caso se toma el
+        centro de la elipse como el centro de la pupila.
+      </p>
+
+      <p class="text">
+        La tercera opción es que se detecten varias elipses que cumplan con las condiciones, en ese caso nos quedamos
+        con la elipse que tenga la mayor área. Esto se debe a que generalmente, cuando se detectan varias elipses,
+        muchas de estas se corresponden a elipses en la zona donde se ubican las pestañas, por lo que su área es mucho
+        menor a la de la pupila.
+      </p>
+
+      <div class="img2">
+        <img src="../images/paso-3.png" alt="Paso 3" />
+      </div>
+
+      <p class="text">
+        Si nos encontramos dentro de la segunda o tercer opción, usamos el centro de la elipse como estimación del
+        centro de la pupila. Finalmente, dibujamos la elipse en la imagen original con la función
+        <code class="code">cv2.ellipse</code> y la mostramos.
+      </p>
+
+      <div class="code-block">
+        <pre>
+def draw_ellipsis(image: np.ndarray, ellipsis):
+    if ellipsis is not None:
+        image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
+        cv2.ellipse(image, ellipsis, (255, 0, 0), 2)
+
+    plt.imshow(image) 
+    plt.title("Detected Pupil")
+    plt.show()
+        </pre>
+      </div>
+
+      <h3 class="subsubtitle">2.1.3. Detección del centro de la pupila basado en heurística</h3>
+
+      <p class="text">
+        Para los casos en los que no se puede estimar una elipse adecuada para la pupila, se utiliza una heurística como
+        fallback. La heurística se basa en que la pupila es aproximadamente simétrica sin importar el ángulo, y que es
+        un elemento mucho más oscuro que la mayoría de la imagen. Su funcionamiento es el siguiente:
+      </p>
+
+      <p class="text">
+        1. Se invierte la imagen, para que la pupila quede blanca, y se normaliza para que el máximo valga 255.
+      </p>
+      <p class="text">
+        2. Aplica un filtro de erosión de CV2, con el fin de eliminar las pestañas, que son el único elemento igual de
+        oscuro que la pupila en la mayoría de la imagen.
+      </p>
+      <p class="text">
+        3. Se crean dos vectores con la sumatoria de cada columna y de cada fila, sumando sólo el valor de los píxeles
+        mayores a 200.
+      </p>
+      <p class="text">
+        4. Se encuentra el máximo de cada vector, y se toma al índice de ambos máximos como las coordenadas X e Y de la
+        pupila en la imagen.
+      </p>
+      <p class="text">
+        En la práctica, para obtener buen rendimiento hay que reducir la cantidad de pixeles a sumar. Por lo tanto se
+        agrega un parámetro "Div" que efectivamente divide la resolución de la imagen (por ejemplo, para un valor Div de
+        2, se analiza un cuarto de los pixeles totales). Esto no afecta mayormente al resultado final, pero sí limita la
+        precisión mínima alcanzable.
+      </p>
+      <p class="text">La siguiente gráfica considera los primeros 20 frames de cada video del dataset:</p>
+
+      <div class="img2">
+        <img src="../images/heuristica.png" width="300" height="300" />
+      </div>
+
+      <p class="text">
+        Como se puede ver, el uso de la heurística mejora considerablemente el rendimiento del algoritmo. Es cierto que,
+        en algunos casos, el error es mayor que no utilizarla, pero para la mayoría obtiene una mejora.
+      </p>
+
+      <h3 class="subsubtitle">Referencias:</h3>
+
+      <p class="reference">
+        ExCuSe: Robust Pupil Detection in Real-World Scenarios:
+        <a
+          class="link"
+          href="https://www.hci.uni-tuebingen.de/assets/pdf/publications/WTCKWE092015.pdf"
+          target="_blank"
+          rel="noreferer"
+          >https://www.hci.uni-tuebingen.de/assets/pdf/publications/WTCKWE092015.pdf</a
+        >
+      </p>
+      <p class="reference">
+        In the Eye of the Beholder:
+        <a class="link" href="https://ieeexplore.ieee.org/abstract/document/4770110" target="_blank" rel="noreferer"
+          >https://ieeexplore.ieee.org/abstract/document/4770110</a
+        >
+      </p>
+
+      <hr class="separator" />
+
+      <div class="main-navigation">
+        <a class="mn-item" href="../index.html">
+          <span>←</span>
+          <p>Introducción</p>
+        </a>
+        <a class="mn-item" href="./datasets.html">
+          <p>Dataset</p>
+          <span>→</span>
+        </a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-logo">
+        <img src="../images/logo-fing.png" alt="Logo Fing" />
+      </div>
+
+      <p class="footer-contributors">Guido Dinello | Mathias Ramilo | Agustin Tejera</p>
+
+      <p class="footer-cr">TIMAG 2023</p>
+    </footer>
+  </body>
+</html>

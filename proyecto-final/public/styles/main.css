@@ -1,0 +1,254 @@
+@import url('global.css');
+@import url('pygment.css');
+
+.header-container {
+  width: 95%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 2em;
+  margin-top: 2.2em;
+  border-radius: 0.5em;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6em;
+}
+
+.header p {
+  font-size: 0.9em;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.header-title__logo {
+  width: 6em;
+  height: 6em;
+}
+
+.header-title__text h1 {
+  font-size: 2em;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.header nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2em;
+  margin-top: 2.2em;
+}
+
+.header nav a {
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--color-text);
+  padding: 0.5em;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.header nav a:hover {
+  color: var(--color-purple);
+}
+
+.header nav .active {
+  background-color: var(--color-purple);
+  color: #fff;
+}
+
+.header nav .active:hover {
+  color: #fff;
+}
+
+main {
+  width: 95%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  margin-top: 2.2em;
+  background-color: #fff;
+  border-radius: 0.5em;
+  padding: 3em 2em;
+}
+
+.title {
+  font-size: 1.5em;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 1.2em;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 1em;
+  margin-top: 2.4em;
+}
+
+.subsubtitle {
+  font-size: 1.1em;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 0.9em;
+  margin-top: 2em;
+}
+
+.text {
+  font-size: 1em;
+  font-weight: 300;
+  text-align: justify;
+  color: var(--color-text);
+  margin-bottom: 1.5em;
+}
+
+.text strong {
+  font-weight: 500;
+}
+
+.code {
+  font-size: 1em;
+  font-family: monospace;
+  font-weight: 900;
+  color: var(--color-purple);
+}
+
+.code-block {
+  background-color: #f5f5f5;
+  padding: 1em;
+  border-radius: 0.5em;
+  margin-bottom: 1.5em;
+  overflow-x: auto;
+}
+
+.img {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+
+.img2 {
+  width: 45%;
+  margin: 0 auto;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.img3 {
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.img4 {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.img5 {
+  width: 30%;
+  margin: 0 auto;
+  margin-top: 3em;
+  margin-bottom: 3em;
+}
+
+.img span {
+  font-size: 0.8em;
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  margin-top: 0.5em;
+  display: block;
+  text-align: center;
+}
+
+.img2 span {
+  font-size: 0.8em;
+  font-weight: 300;
+  color: var(--color-text-secondary);
+  margin-top: 0.5em;
+  display: block;
+  text-align: center;
+}
+
+.reference {
+  font-size: 0.9em;
+  font-weight: 400;
+  margin-bottom: 0.2em;
+}
+
+.link {
+  font-size: 0.9em;
+  font-weight: 400;
+  color: var(--color-purple);
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.separator {
+  border: none;
+  height: 1px;
+  background-color: #e1e1e1;
+  margin: 2.8em 0 0.8em 0;
+}
+
+.main-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mn-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  transition: all 0.2s ease-in-out;
+}
+
+.mn-item:hover {
+  color: var(--color-purple);
+}
+
+footer {
+  width: 95%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  margin-top: 6em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8em;
+}
+
+.footer-logo {
+  width: 7em;
+  height: auto;
+}
+
+.footer-contributors {
+  font-size: 0.85em;
+  font-weight: 300;
+}
+
+.footer-cr {
+  font-size: 0.8em;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}

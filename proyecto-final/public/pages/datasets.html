@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pupil Detector | Proyecto TIMAG 2023</title>
+    <link rel="shortcut icon" href="../images/eye-logo.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+
+  <body>
+    <header class="header-container">
+      <div class="header">
+        <p>Proyecto Final | TIMAG 2023</p>
+
+        <div class="header-title">
+          <div class="header-title__logo">
+            <img src="../images/eye-logo.png" alt="Logo" />
+          </div>
+          <div class="header-title__text">
+            <h1>Pupil Detector</h1>
+          </div>
+        </div>
+
+        <nav>
+          <a href="../index.html">Introducción</a>
+          <a href="./methods.html">Método</a>
+          <a href="#" class="active">Dataset</a>
+          <a href="./results.html">Resultados</a>
+          <a href="./conclusions.html">Conclusiones</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <h2 class="title">3. Dataset</h2>
+
+      <p class="text">
+        En la literatura sobre detección y segmentación de la pupila, hay varios conjuntos de datos disponibles que
+        pueden ser adecuados para afrontar el problema. Algunos de ellos son Labelled Pupils in the Wild, UBIRIS y
+        OpenEDS.
+      </p>
+
+      <p class="text">
+        Existen varios factores a considerar, el tamaño del conjunto de datos, la diversidad de las imágenes, la calidad
+        de las anotaciones, entre otros. Decidimos utilizar el dataset de Labelled Pupils in the Wild dado que cumple de
+        buena manera con algunas de estas razones:
+      </p>
+
+      <ul>
+        <li class="text">
+          <strong>• Tamaño y diversidad</strong>: El dataset provee 66 videos de alta resolucion y alta velocidad (cada
+          uno contiene 95 frames por segundo) de 22 participantes en diferentes locaciones y condiciones de iluminación.
+        </li>
+
+        <li class="text">
+          <strong>• Anotaciones precisas</strong>: Para cada frame de los videos se dispone de las coordenadas
+          <i>x</i> e <i>y</i> de la posición de la pupila. Estas anotaciones fueron realizadas manualmente por un
+          humano, lo que asegura una buena precisión.
+        </li>
+
+        <li class="text">
+          <strong>• Relevancia del dominio</strong>: Las imágenes fueron tomadas en entornos de la vida cotidiana, lo
+          que aumenta su relevancia para aplicaciones prácticas de detección de pupila en entornos del mundo real.
+        </li>
+      </ul>
+
+      <h3 class="subsubtitle">Referencias:</h3>
+
+      <p class="reference">
+        Labelled Pupils in the Wild Paper:
+        <a class="link" href="https://arxiv.org/pdf/1511.05768.pdf" target="_blank" rel="noreferer"
+          >https://arxiv.org/pdf/1511.05768.pdf</a
+        >
+      </p>
+      <p class="reference">
+        Labelled Pupils in the Wild Dataset:
+        <a
+          class="link"
+          href="https://www.mpi-inf.mpg.de/departments/computer-vision-and-machine-learning/research/gaze-based-human-computer-interaction/labelled-pupils-in-the-wild-lpw"
+          target="_blank"
+          rel="noreferer"
+          >https://www.mpi-inf.mpg.de/departments/computer-vision-and-machine-learning/research/gaze-based-human-computer-interaction/labelled-pupils-in-the-wild-lpw</a
+        >
+      </p>
+      <p class="reference">
+        UBIRIS:
+        <a class="link" href="http://iris.di.ubi.pt/" target="_blank" rel="noreferer">http://iris.di.ubi.pt/</a>
+      </p>
+      <p class="reference">
+        OpenEDS:
+        <a class="link" href="https://paperswithcode.com/dataset/openeds" target="_blank" rel="noreferer"
+          >https://paperswithcode.com/dataset/openeds</a
+        >
+      </p>
+
+      <hr class="separator" />
+
+      <div class="main-navigation">
+        <a class="mn-item" href="./methods.html">
+          <span>←</span>
+          <p>Método</p>
+        </a>
+        <a class="mn-item" href="./results.html">
+          <p>Resultados</p>
+          <span>→</span>
+        </a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-logo">
+        <img src="../images/logo-fing.png" alt="Logo Fing" />
+      </div>
+
+      <p class="footer-contributors">Guido Dinello | Mathias Ramilo | Agustin Tejera</p>
+
+      <p class="footer-cr">TIMAG 2023</p>
+    </footer>
+  </body>
+</html>

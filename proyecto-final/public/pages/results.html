@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pupil Detector | Proyecto TIMAG 2023</title>
+    <link rel="shortcut icon" href="../images/eye-logo.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body>
+    <header class="header-container">
+      <div class="header">
+        <p>Proyecto Final | TIMAG 2023</p>
+
+        <div class="header-title">
+          <div class="header-title__logo">
+            <img src="../images/eye-logo.png" alt="Logo" />
+          </div>
+          <div class="header-title__text">
+            <h1>Pupil Detector</h1>
+          </div>
+        </div>
+
+        <nav>
+          <a href="../index.html">Introducción</a>
+          <a href="./methods.html">Método</a>
+          <a href="./datasets.html">Dataset</a>
+          <a href="#" class="active">Resultados</a>
+          <a href="./conclusions.html">Conclusiones</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <h2 class="title">4. Resultados</h2>
+
+      <p class="text">
+        Nos pareció relevante ver como se comporta el modelo propuesto bajo diferentes condiciones. Es por esto que
+        llevamos a cabo evaluaciones diferenciales sobre imágenes "complicadas", aquellas donde la pupila estaba parcialmente obstruida.
+        Más especificamente elegimos evaluar el algoritmo en imágenes donde los individuos usaban lentes de marco o lentes de contacto.
+      </p>
+
+      <div class="img4">
+        <img src="../images/lentes-marco.png" alt="Lentes Marco" />
+      </div>
+
+      <div class="img5">
+        <img src="../images/lentes-contacto.png" alt="Lentes Contacto" />
+      </div>
+
+        
+
+      <hr class="separator" />
+
+      <div class="main-navigation">
+        <a class="mn-item" href="./datasets.html">
+          <span>←</span>
+          <p>Dataset</p>
+        </a>
+        <a class="mn-item" href="./conclusions.html">
+          <p>Conclusiones</p>
+          <span>→</span>
+        </a>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-logo">
+        <img src="../images/logo-fing.png" alt="Logo Fing" />
+      </div>
+
+      <p class="footer-contributors">Guido Dinello | Mathias Ramilo | Agustin Tejera</p>
+
+      <p class="footer-cr">TIMAG 2023</p>
+    </footer>
+  </body>
+</html>

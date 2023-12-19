@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pupil Detector | Proyecto TIMAG 2023</title>
+    <link rel="shortcut icon" href="../images/eye-logo.png" type="image/x-icon" />
+
+    <link rel="stylesheet" href="../styles/main.css" />
+  </head>
+  <body>
+    <header class="header-container">
+      <div class="header">
+        <p>Proyecto Final | TIMAG 2023</p>
+
+        <div class="header-title">
+          <div class="header-title__logo">
+            <img src="../images/eye-logo.png" alt="Logo" />
+          </div>
+          <div class="header-title__text">
+            <h1>Pupil Detector</h1>
+          </div>
+        </div>
+
+        <nav>
+          <a href="../index.html">Introducción</a>
+          <a href="./methods.html">Método</a>
+          <a href="./datasets.html">Dataset</a>
+          <a href="./results.html">Resultados</a>
+          <a href="#" class="active">Conclusiones</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <h2 class="title">5. Conclusiones</h2>
+
+      <p class="text">
+        La deteccion de la pupila en el ojo humano es un problema complejo pero que vale la pena afrontar debido a sus
+        múltiples utilidades. Desde el desarrollo de sistemas de asistencia para personas con discapacidades que les
+        permita interactuar con dispositivos de forma efectiva hasta ámbitos de investigación en psicología,
+        neurociencia o marketing donde analizar la dirección de la mirada puede dar resultados de importancia para
+        comprender como el sujeto de investigación toma decisiones frente a estímulos visuales, o incluso para lograr
+        una mayor inmersividad en sistemas de realidad virtual y aumentada.
+      </p>
+
+      <p class="text">
+        Si bien como dijimos anteriormente, es un problema complicado, ya que entran en juego muchos factores que
+        dificultan la correcta detección de la pupila, factores en cuanto a las condiciones de la imagen (Iluminación,
+        nitidez, ruido, etc.) y tambien factores inherentes a la persona (Uso de lentes de contacto o de marco,
+        pestañas, tonalidad de la pupila, etc.). Sin embargo, mediante el uso de técnicas acertadas para este tipo de
+        problema, logramos resultados bastante buenos.
+      </p>
+
+      <p class="text">
+        La gráfica de la izquierda muestra el desempeño de nuestro algoritmo en la totalidad del dataset (132.000
+        imagenes), donde se evalúa el funcionamiento del algoritmo en multiples condiciones, tanto favorables como
+        desfavorables. En la imagen de la derecha se ve el desempeño de otros algoritmos reconocidos.
+      </p>
+
+      <div class="img4">
+        <img src="../images/final-result.png" alt="Grafica de desempeño global" />
+      </div>
+
+      <p class="text">
+        Observando las gráficas podemos observar que el desempeño de nuestro algoritmo no difiere tanto de los
+        algoritmos reconocidos.
+      </p>
+
+      <hr class="separator" />
+
+      <div class="main-navigation">
+        <a class="mn-item" href="./results.html">
+          <span>←</span>
+          <p>Resultados</p>
+        </a>
+        <div class="mn-item">
+          <a href="./experiments.html"></a>
+          <span></span>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-logo">
+        <img src="../images/logo-fing.png" alt="Logo Fing" />
+      </div>
+
+      <p class="footer-contributors">Guido Dinello | Mathias Ramilo | Agustin Tejera</p>
+
+      <p class="footer-cr">TIMAG 2023</p>
+    </footer>
+  </body>
+</html>

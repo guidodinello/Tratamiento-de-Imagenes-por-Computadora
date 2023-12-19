@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+  --font-family: 'Noto Sans', sans-serif;
+
+  --max-width: 990px;
+
+  --color-purple: #827cff;
+  --color-gray: #e3e3e3;
+  --color-text: #171717;
+  --color-text-secondary: #4a4a4a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-family);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  background-color: var(--color-gray);
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+pre {
+  font-family: monospace;
+  font-size: 1em;
+  line-height: 1.5;
+  color: #1d1d1d;
+}
+
+input {
+  border: none;
+  outline: none;
+}
+
+select {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+textarea {
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+label {
+  cursor: pointer;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #5e5e5e;
+  border-radius: 100px;
+}
+
+::selection {
+  background-color: var(--color-purple);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: var(--color-purple);
+  color: #ffffff;
+}

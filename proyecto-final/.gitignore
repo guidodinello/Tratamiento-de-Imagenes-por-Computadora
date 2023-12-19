@@ -1,0 +1,4 @@
+__pycache__
+.vscode/
+venv/
+dataset/LPW_frames_symlink
